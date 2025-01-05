@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        body {
+            background-color: #8cb0e0;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .card-header {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn {
+            font-weight: bold;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container vh-100">
+        <div class="row justify-content-center h-100">
+            <div class="card w-50 my-auto shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h2>Login Form</h2>                    
+                </div>
+                <div class="card-body">
+                    <form action="login.php" method="POST">
+                        <div class="form-group mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="@gmail" required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <small>&copy; SkillShare 2024. All Rights Reserved.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
