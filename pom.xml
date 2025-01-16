@@ -16,13 +16,6 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- JSP support (optional, depending on how you want to handle JSPs) -->
-        <dependency>
-            <groupId>org.apache.jsp</groupId>
-            <artifactId>apache-jsp</artifactId>
-            <version>8.5.57</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <build>
