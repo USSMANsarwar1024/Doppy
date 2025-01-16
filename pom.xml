@@ -11,11 +11,12 @@
     <dependencies>
         <!-- Servlet API for basic Java EE support -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
+             <groupId>org.apache.tomcat</groupId>
+             <artifactId>tomcat-jsp-api</artifactId>
+             <version>9.0.98</version>  <!-- Choose the appropriate version for your Tomcat version -->
+             <scope>provided</scope>
+         </dependency>
+
     </dependencies>
 
     <build>
