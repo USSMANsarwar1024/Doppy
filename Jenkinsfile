@@ -9,6 +9,14 @@ pipeline {
             }
         }
 
+        stage('Run Unit Tests') {
+            steps {
+                echo 'Running JUnit Tests...'
+                sh 'mvn test'
+            }
+        }
+
+
         stage('Deploy to DEV') {
             steps {
                 echo "Deploying to DEV..."
@@ -29,4 +37,11 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+        }
+    }
+
 }
