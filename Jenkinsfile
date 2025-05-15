@@ -1,39 +1,48 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3' // Make sure 'Maven3' is configured in Jenkins tools
+    }
+
+    environment {
+        SONARQUBE = 'LocalSonar' // Name of SonarQube server configured in Jenkins
+    }
+
     stages {
-        stage('Build') {
+        stage('Clone Code') {
             steps {
-                echo "Building WAR file..."
-                sh 'mvn clean package'
+                git 'https://github.com/USSMANsarwar1024/Doppy.git'
             }
         }
 
-        stage('Run Unit Tests') {
+        stage('SonarQube Analysis') {
             steps {
-                echo 'Running JUnit Tests...'
+                withSonarQubeEnv("${SONARQUBE}") {
+                    sh 'mvn clean verify sonar:sonar'
+                }
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
                 sh 'mvn test'
             }
         }
 
-
-        stage('Deploy to DEV') {
+        stage('Build WAR') {
             steps {
-                echo "Deploying to DEV..."
-                // Placeholder: will replace with real deploy logic
+                sh 'mvn package'
             }
         }
 
-        stage('Approval') {
+        stage('Deploy to Tomcat') {
             steps {
-                input message: 'Deploy to QA?', ok: 'Yes, go ahead!'
-            }
-        }
-
-        stage('Deploy to QA') {
-            steps {
-                echo "Deploying to QA..."
-                // Placeholder: will replace with real deploy logic
+                // Linux (adjust path if you're on Windows)
+                //sh 'cp target/*.war /path/to/tomcat/webapps/'
+                
+                // OR Windows:
+                bat 'copy target\\*.war C:\\Tomcat\\apache-tomcat-9.0.98\\webapps'
             }
         }
     }
@@ -43,5 +52,4 @@ pipeline {
             junit '**/target/surefire-reports/*.xml'
         }
     }
-
 }
