@@ -24,7 +24,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('LocalSonar') {
                     withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
-                        sh 'mvn clean verify sonar:sonar -Dsonar.token=$SONAR_TOKEN'
+                        bat 'mvn clean verify sonar:sonar -Dsonar.token=%SONAR_TOKEN% -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml'
                     }
                 }
             }
