@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17  # Matches your Java 17 requirement
+    commands:
+      - echo "Installing Maven dependencies..."
+  
+  pre_build:
+    commands:
+      - echo "Running pre-build checks..."
+      - mvn --version
+      - java --version
+      - ls -la  # Verify pom.xml exists
+  
+  build:
+    commands:
+      - echo "Building WAR file..."
+      - mvn clean package  # Runs tests & builds WAR
+  
+  post_build:
+    commands:
+      - echo "Build completed!"
+      - ls -la target/  # Verify WAR file exists
+
+artifacts:
+  files:
+    - 'target/*.war'  # Deploy the WAR file
+  discard-paths: no  # Keep directory structure
